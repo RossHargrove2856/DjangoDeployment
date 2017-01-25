@@ -1,0 +1,13 @@
+body {
+    padding: 5%;
+}
+
+div {
+    display: inline-block;
+    margin-right: 5%;
+    vertical-align: text-top;
+}
+
+a {
+    display: block;
+}

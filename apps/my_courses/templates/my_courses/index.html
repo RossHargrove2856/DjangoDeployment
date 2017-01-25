@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Courses</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'my_courses/css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <h2>Add a New Course!</h2>
+    {% if messages %}
+        {% for message in messages %}
+            <p class="alert alert-warning" role="alert">{{message}}</p>
+        {% endfor %}
+    {% endif %}
+    <form action="courses/add" method="POST">
+        {% csrf_token %}
+        <p>Name: <input type="text" name="name"></p>
+        <p>Description: <textarea name="description"></textarea></p>
+        <input type="submit" value="Add">
+    </form>
+    <h2>Courses</h2>
+    <div>
+        <h4>Name</h4>
+        {% for course in courses %}
+            <p>{{course.name}}</p>
+        {% endfor %}
+    </div>
+    <div>
+        <h4>Description</h4>
+        {% for course in courses %}
+            <p>{{course.description}}</p>
+        {% endfor %}
+    </div>
+    <div>
+        <h4>Date Created</h4>
+        {% for course in courses %}
+            <p>{{course.created_at}}</p>
+        {% endfor %}
+    </div>
+    <div>
+        <h4>Remove Course</h4>
+        {% for course in courses %}
+            <p><a href="/courses/destroy/{{course.id}}">Remove</a></p>
+        {% endfor %}
+    </div>
+</body>
+</html>
